@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AES-128 visualiser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>AES-128, one byte at a time</h1>
+    <p class="lede">Type a message and a key, then step through all 10 rounds. Bytes that a step changed are highlighted. Click any byte to inspect it.</p>
+  </header>
+
+  <section class="panel inputs" aria-label="Inputs">
+    <div class="bar">
+      <div class="seg" role="group" aria-label="Input format">
+        <button type="button" data-mode="text" class="on">Text</button>
+        <button type="button" data-mode="hex">Hex</button>
+      </div>
+      <button type="button" class="btn" id="exText">Text example</button>
+      <button type="button" class="btn" id="exFips">FIPS-197 test vector</button>
+    </div>
+    <div class="irow">
+      <label>Plaintext (16 bytes)<input type="text" id="pt" spellcheck="false" autocomplete="off"></label>
+      <label>Key (16 bytes)<input type="text" id="key" spellcheck="false" autocomplete="off"></label>
+    </div>
+    <p id="msg" role="status"></p>
+    <dl class="hexrows">
+      <dt>Plaintext</dt><dd id="hPt"></dd>
+      <dt>Key</dt><dd id="hKey"></dd>
+      <dt>Ciphertext</dt><dd id="hCt" class="ct"></dd>
+    </dl>
+  </section>
+
+  <section class="panel" aria-label="Playback">
+    <div class="rounds" id="rounds"></div>
+    <div class="ops" id="ops"></div>
+    <div class="transport">
+      <button type="button" class="btn" id="bStart">Start</button>
+      <button type="button" class="btn" id="bBack">Back</button>
+      <button type="button" class="btn primary" id="bPlay">Play</button>
+      <button type="button" class="btn" id="bNext">Next</button>
+      <button type="button" class="btn" id="bEnd">End</button>
+      <input type="range" id="scrub" min="0" value="0" aria-label="Step">
+      <span id="count"></span>
+    </div>
+  </section>
+
+  <section class="panel" id="stage" aria-live="polite"></section>
+  <section class="panel detail" id="detail"></section>
+  <section class="panel" id="sched"></section>
+</main>
+
+<script src="js/aes.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

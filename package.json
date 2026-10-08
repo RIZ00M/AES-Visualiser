@@ -1,0 +1,12 @@
+{
+  "name": "aes-visualiser",
+  "version": "1.0.0",
+  "description": "Step-by-step AES-128 encryption visualiser in plain HTML, CSS and JavaScript",
+  "scripts": {
+    "test": "node --test test/aes.test.js",
+    "start": "npx --yes serve ."
+  },
+  "keywords": ["aes", "cryptography", "visualisation", "education"],
+  "license": "MIT",
+  "private": true
+}
